@@ -54,8 +54,8 @@ public class PacientesClinica {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PacientesClinica paciente = (PacientesClinica) o;
-        return id == paciente.id;
+        PacientesClinica pacientesClinica = (PacientesClinica) o;
+        return id == pacientesClinica.id;
     }
 
     @Override
