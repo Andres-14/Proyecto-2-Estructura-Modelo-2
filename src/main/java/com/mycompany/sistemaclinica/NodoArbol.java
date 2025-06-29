@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.sistemaclinica;
 
-/**
- *
- * @author HP
- */
-public class NodoArbol {
-    
+public class NodoArbol<T> { 
+    public T data;
+    public NodoArbol<T> left;
+    public NodoArbol<T> right;
+
+    public NodoArbol(T data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
 }
