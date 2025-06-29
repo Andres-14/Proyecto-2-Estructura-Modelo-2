@@ -20,7 +20,7 @@ public class PacientesClinica {
         this.diagnostico = diagnostico;   
     }
     
-    public PacienteClinica(int id) {
+    public PacientesClinica(int id) {
         this.id = id;
     }
 
@@ -40,15 +40,17 @@ public class PacientesClinica {
         return fechaNacimiento;
     }
 
-    public String getDiagnosttico() {
+    public String getDiagnostico() {
         return diagnostico;
     }
 
+    @Override
     public String toString() {
         return "ID: " + id + ", Nombre del paciente: " + nombre + ", Sexo: " + sexo +
                ", Fecha de Nacimiento: " + fechaNacimiento + ", Diagnostico obtenido: " + diagnostico;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -56,6 +58,7 @@ public class PacientesClinica {
         return id == paciente.id;
     }
 
+    @Override
     public int hashCode() {
         return Objects.hash(id);
     }

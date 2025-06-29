@@ -40,11 +40,11 @@ public class PacientesEncoladosClinica {
         this.nombre = nombre;
     }
 
-    public void setReason(String motivoC) {
+    public void setMotivo(String motivoC) {
         this.motivoC = motivoC;
     }
 
-    public void setPriority(int prioridad) {
+    public void setPrioridad(int prioridad) {
         this.prioridad = prioridad;
     }
 
