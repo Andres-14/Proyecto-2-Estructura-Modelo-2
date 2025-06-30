@@ -1,29 +1,26 @@
+// Archivo 6 (data_structures/AVLTree.java)
+public class AVLTree {
+    private AVL_Node root;
 
-package com.mycompany.sistemaclinica;
-
-
-public class ArbolAVL {
-    private NodoAVL root;
-
-    public ArbolAVL() {
+    public AVLTree() {
         this.root = null;
     }
 
     // --- Métodos Auxiliares para AVL ---
 
     // Obtiene la altura de un nodo. Si el nodo es nulo, su altura es 0.
-    private int height(NodoAVL node) {
+    private int height(AVL_Node node) {
         return (node == null) ? 0 : node.height;
     }
 
     // Calcula el factor de balance de un nodo (altura_izquierda - altura_derecha).
     // Un factor de balance > 1 o < -1 indica desequilibrio.
-    private int getBalance(NodoAVL node) {
+    private int getBalance(AVL_Node node) {
         return (node == null) ? 0 : height(node.left) - height(node.right);
     }
 
     // Actualiza la altura de un nodo basándose en las alturas de sus hijos.
-    private void updateHeight(NodoAVL node) {
+    private void updateHeight(AVL_Node node) {
         if (node != null) {
             node.height = 1 + Math.max(height(node.left), height(node.right));
         }
@@ -32,9 +29,9 @@ public class ArbolAVL {
     // --- Operaciones de Rotación (Clave para AVL) ---
 
     // Rotación simple a la derecha. Usada cuando el subárbol izquierdo del hijo izquierdo es muy alto.
-    private NodoAVL rightRotate(NodoAVL y) {
-        NodoAVL x = y.left; // x es el hijo izquierdo de y
-        NodoAVL T2 = x.right; // T2 es el subárbol derecho de x
+    private AVL_Node rightRotate(AVL_Node y) {
+        AVL_Node x = y.left; // x es el hijo izquierdo de y
+        AVL_Node T2 = x.right; // T2 es el subárbol derecho de x
 
         // Realiza la rotación
         x.right = y;
@@ -48,9 +45,9 @@ public class ArbolAVL {
     }
 
     // Rotación simple a la izquierda. Usada cuando el subárbol derecho del hijo derecho es muy alto.
-    private NodoAVL leftRotate(NodoAVL x) {
-        NodoAVL y = x.right; // y es el hijo derecho de x
-        NodoAVL T2 = y.left; // T2 es el subárbol izquierdo de y
+    private AVL_Node leftRotate(AVL_Node x) {
+        AVL_Node y = x.right; // y es el hijo derecho de x
+        AVL_Node T2 = y.left; // T2 es el subárbol izquierdo de y
 
         // Realiza la rotación
         y.left = x;
@@ -66,21 +63,21 @@ public class ArbolAVL {
     // --- Operación de Inserción ---
 
     public void insert(PacientesEncoladosClinica pacientesClinica) {
-        root = agregarPaciente(root, pacientesClinica);
+        root = insertRecursive(root, pacientesClinica);
         System.out.println("Paciente con ID " + pacientesClinica.getId() + " registrado/actualizado en cola.");
     }
 
     // Método recursivo para insertar y balancear el árbol.
-    private NodoAVL agregarPaciente(NodoAVL node, PacientesEncoladosClinica pacientesClinica) {
+    private AVL_Node insertRecursive(AVL_Node node, PacientesEncoladosClinica pacientesClinica) {
         // 1. Realizar la inserción estándar de un BST.
         if (node == null) {
-            return new NodoAVL(pacientesClinica);
+            return new AVL_Node(pacientesClinica);
         }
 
         if (pacientesClinica.getId() < node.data.getId()) {
-            node.left = agregarPaciente(node.left, pacientesClinica);
+            node.left = insertRecursive(node.left, pacientesClinica);
         } else if (pacientesClinica.getId() > node.data.getId()) {
-            node.right = agregarPaciente(node.right, pacientesClinica);
+            node.right = insertRecursive(node.right, pacientesClinica);
         } else {
             // Si el ID ya existe, actualizamos los datos del paciente y no hacemos más.
             node.data = pacientesClinica;
@@ -138,7 +135,7 @@ public class ArbolAVL {
     }
 
     // Método recursivo para buscar un paciente.
-    private PacientesEncoladosClinica encontrarPacientes(NodoAVL current, int id) {
+    private PacientesEncoladosClinica encontrarPacientes(AVL_Node current, int id) {
         if (current == null) {
             return null; // El paciente no está en el árbol.
         }
@@ -159,12 +156,12 @@ public class ArbolAVL {
      * @param id El ID del paciente a eliminar.
      */
     public void delete(int id) {
-        root = eliminarPacientes(root, id);
+        root = deleteRecursive(root, id);
         System.out.println("Paciente con ID " + id + " eliminado de la cola.");
     }
 
     // Método recursivo para eliminar un nodo y balancear el árbol.
-    private NodoAVL eliminarPacientes(NodoAVL node, int id) {
+    private AVL_Node deleteRecursive(AVL_Node node, int id) {
         // 1. Realizar la eliminación estándar de un BST.
         if (node == null) {
             System.out.println("Paciente con ID " + id + " no encontrado en la cola para eliminar.");
@@ -172,15 +169,15 @@ public class ArbolAVL {
         }
 
         if (id < node.data.getId()) {
-            node.left = eliminarPacientes(node.left, id);
+            node.left = deleteRecursive(node.left, id);
         } else if (id > node.data.getId()) {
-            node.right = eliminarPacientes(node.right, id);
+            node.right = deleteRecursive(node.right, id);
         } else {
             // Nodo a eliminar encontrado.
 
             // Caso 1: El nodo no tiene hijos o tiene un solo hijo.
             if (node.left == null || node.right == null) {
-                NodoAVL temp = null;
+                AVL_Node temp = null;
                 if (node.left == null) {
                     temp = node.right;
                 } else {
@@ -196,11 +193,11 @@ public class ArbolAVL {
             } else {
                 // Caso 2: El nodo tiene dos hijos.
                 // Encontramos el sucesor in-order (el más pequeño en el subárbol derecho).
-                NodoAVL temp = minValueNode(node.right);
+                AVL_Node temp = minValueNode(node.right);
                 // Copiamos los datos del sucesor al nodo actual.
                 node.data = temp.data;
                 // Eliminamos el sucesor in-order del subárbol derecho.
-                node.right = eliminarPacientes(node.right, temp.data.getId());
+                node.right = deleteRecursive(node.right, temp.data.getId());
             }
         }
 
@@ -245,8 +242,8 @@ public class ArbolAVL {
     }
 
     // Encuentra el nodo con el valor mínimo en un subárbol (para eliminación).
-    private NodoAVL minValueNode(NodoAVL node) {
-        NodoAVL current = node;
+    private AVL_Node minValueNode(AVL_Node node) {
+        AVL_Node current = node;
         // Recorre hacia la izquierda hasta encontrar el nodo más a la izquierda.
         while (current.left != null) {
             current = current.left;
@@ -258,7 +255,7 @@ public class ArbolAVL {
      * Lista todos los pacientes en la cola de atención en orden (ID ascendente).
      * Esto se hace con un recorrido in-order.
      */
-    public void listaPacientesEncolados() {
+    public void listAllQueuedPatients() {
         if (root == null) {
             System.out.println("No hay pacientes en la cola de atención.");
             return;
@@ -269,7 +266,7 @@ public class ArbolAVL {
     }
 
 
-    private void inOrderTraversal(NodoAVL node) {
+    private void inOrderTraversal(AVL_Node node) {
         if (node != null) {
             inOrderTraversal(node.left);
             System.out.println(node.data);
