@@ -1,0 +1,89 @@
+Bitacora de Proyecto.
+
+------Día Viernes 28/06/25:-------
+
+¿Qué se trabajó hoy?:
+* Inicamos el proyecto poniendonos de acuerdo de como lo hariamos. Por su extensión decidimos que fuera 
+  en varios archivos para facilitar su construccion, desarrollo y como nos dividiriamos el trabajo.
+
+¿Qué inteligencia artificial se utilizó?:
+* Gemini y Copilot, Gemini para preguntas en concreto y Copilot para mejorar la estructura del codigo.
+
+¿Qué prompt se hizo?:
+* (A Gemini): que import nos recomiendas en java para poder utilizar metodos como hascode, equals, ids y asi?
+¿Qué respondió la IA?:
+* java.util.Objects:
+Esta clase es altamente recomendada para ayudarte a implementar equals() y hashCode() de manera segura y concisa. Proporciona métodos estáticos de utilidad. (Explicacion muy larga)
+¿Cómo se adaptó esa respuesta al proyecto?:
+* Se adapto siguiendo su recomendacion y utilizandola para la creacion, uso y busqueda de los ID de los pacientes y tambien su comparacion
+
+¿Qué prompt se hizo?:
+* (A Gemini): que imports para java nos recomiendas para hacer validaciones de datos ingresados por el usuario como fechas o numeros en las opciones de un menu?
+¿Qué respondió la IA?: (Explicacion muy larga y detallada de cada uno....) 
+ Resumen de las imports clave para validación de datos en Java:
+- java.util.Scanner: Para leer la entrada del usuario desde la consola.
+- java.util.InputMismatchException: Para manejar entradas de tipo incorrecto (ej. texto en lugar de número).
+-java.lang.NumberFormatException: (No requiere importación explícita) Para errores al intentar parsear una cadena a un número.
+- java.time.LocalDate, java.time.format.DateTimeFormatter, java.time.format.DateTimeParseException: Para una validación robusta de fechas con la API moderna de Java.
+ Estas son las principales imports y clases que te darán las herramientas necesarias para validar eficientemente los datos ingresados por tus usuarios en un menú. ¡Espero que te sea útil!
+¿Cómo se adaptó esa respuesta al proyecto?:
+* Se adapto eligiendo a java.util.InputMismatchException y java.time.format.DateTimeParseException para las validaciones de los datos ingresados por el usuario.
+
+¿Qué problemas se encontraron?:
+* Más que nada problemas de comunicacion y organizacion.
+
+
+
+------Día Sabado 29/06/25:-------
+
+¿Qué se trabajó hoy?:
+* Andrés creo el repositorio en GitHub e invito a los demás, tambien se hizo el reparto del trabajo. En total se decidio que fueran 8 archivos: SistemaClinica, Clinica, PacientesClinica, PacientesEncoladosClinica, NodoArbol, ArbolBinarioS, NodoAVL y ArbolAVL
+Se dividio el trabajo de la siguiente forma: 
+* Alex y Andrés: PacientesClinica, PacientesEncoladosClinica, Clinica y SistemaClinica
+* Fabrizio y José: NodoArbol, ArbolBinarioS, NodoAVL y ArbolAVL
+ Luego de la organizacion, Andrés creo el proyecto en NetBeans y añadio todos los archivos anteriormente mencionados para luego subir el primer commit
+
+¿Qué prompt se hizo?:
+* El día de hoy ninguno destacable más que dudas para estructuracion del proyecto
+¿Qué respondió la IA?:
+* Consejos basicos como el buen uso de nombres claros y entendibles, el buen uso de {}, la utilizacion de constructors, etc.
+¿Cómo se adaptó esa respuesta al proyecto?:
+* Se adapto en el estilo de los nombres, y estructuracion del codigo, las variables, clases y metodos en general
+
+¿Qué problemas se encontraron?:
+* Nuevamente problemas de organizacion y comunicacion, hacer trabajos en equipos teniendo que utilizar Git es un caos para que todos entiendan y esten en sintonia
+
+
+
+------Día Domingo 30/06/25:-------
+
+¿Qué se trabajó hoy?:
+* Andrés realizo el codigo del JavaClass PacientesClinica y subio su commit respectivo. (Este codigo trabaja las propiedades del paciente como su nombre y sexo, ademas de metodos como el toString)
+* Andrés realizo el codigo del JavaClass PacientesEncoladosClinica y subio su commit respectivo. (Este codigo trabaja las propiedades del paciente cuando se encuentra dentro de la cola de atencion, como el motivo de su consulta, tambien trabaja distintos metodos)
+* Andrés hizo correciones en ambos codigos y subio el commit respectivo. (Arreglo de errores, cambio de nombres, etc)
+* Andrés hizo nuevas correciones en PacientesClinica y subio el commit respectivo. (Arreglo de errores, cambio de nombres, etc)
+- Fabrizio realizo los codigos de los JavaClass NodoArbol y ArbolBinarioS y subio el codigo respectivo. (Estos codigos trabajan la creacion y funcionamiento del arbol binario para la administracion de los datos de los pacientes desde 0, con todos sus metodos y funciones)
+- Fabrizio luego de preguntarle a Copilot (Explicacion más abajo) elimino el JavaClass NodoArbol y su codigo se integro al princio de la JavaClass ArbolBinarioS. (Le dio toc que el codigo del Nodo fueran solo 8 lineas)
+* Jose Angel realizo el codigo de la JavaClass ArbolAVL y subio el commit respectivo. (Este codigo trabaja el funcionamiento del ArbolAVL en la administracion de los datos de los pacientes cuando ya estan en la cola de atencion)
+[- Debido a una confusion de Jose Angel, Andrés agrego el contenido de ArbolAVL a la carpeta donde se encuentran todos los archivos
+ - Andrés realizo el codigo faltante de la JavaClass NodoAVL. (Es el nodo base desde el cual el ArbolAVL se mentiene)
+ - Andrés realizo el codigo de la JavaClass Clinica. (Nodo en el cual se encuentran metodos como agregar o eliminar a un paciente del registro de la cola)
+ - Andrés realizo correciones en todos los codigos existentes hasta el momento para que todos esten en sintonia y sean compatibles y funcionen.
+ - Todos estos cambios se realizaron en el mismo commit]
+* Alex realizo el codigo de la JavaClass SistemaClinica y subio el commit respectivo. (Es el menu del codigo)
+* Andrés hizo correciones finales y termino la bitacora para luego subit el commit final.
+
+¿Qué inteligencia artificial se utilizó?:
+* Copilot para las preguntas sobre una mejor estructura en el codigo
+¿Qué prompt se hizo?:
+* No tengo el prompt exacto de Fabrizio pero le pregunto a copilot si podia unificar el codigo de NodoArbol y ArbolBinarioS en uno solo
+* Tambien se hicieron preguntas basicas suministrandole el codigo que teniamos para que nos ayudara con la estructuracion de algunas partes
+¿Qué respondió la IA?:
+* Correciones, ideas y consejos para mejorar la estructura del codigo y para Fabrizio como añadir el codigo del Nodo dentro del archivo del Arbol Binario
+¿Cómo se adaptó esa respuesta al proyecto?:
+* Añadiendo las correcciones y consejos al codigo para mejorar su estructura y combinar el Nodo y el Arbol Binario en un solo archivo
+
+¿Qué problemas se encontraron?:
+* Más que nada problemas de organizacion y comunicacion, teniendo variables iguales llamadas de manera distinta en el codigo que trabajaba uno u otro, lo mismo a la hora de a que branch subir los commits, o en parte de la branch
+Tambien problemas para aprovechar el tiempo y trabajar de forma fluida y calmada, ademas de prolemas con la estructura del codigo o los archivos al ser varios
+

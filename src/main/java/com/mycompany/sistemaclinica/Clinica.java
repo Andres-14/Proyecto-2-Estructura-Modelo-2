@@ -12,7 +12,7 @@ public class Clinica {
         this.activeQueue = new ArbolAVL();
     }
 
-    // --- Gestión de Registros Históricos ---
+    // ----- Gestion de Registros Historicos -----
     public void registrarHistorialPaciente(String nombre, String sexo, LocalDate dob, String diagnostico) {
         PacientesClinica newPaciente = new PacientesClinica(nombre, sexo, dob, diagnostico);
         historicalRecords.insert(newPaciente);
@@ -20,7 +20,6 @@ public class Clinica {
 
     public PacientesClinica buscarHistoricalRecords(int id) {
         PacientesClinica pacientesClinica = historicalRecords.search(id);
-        // La impresión ya se hace dentro del método search del BST, pero puedes añadirla aquí también si quieres.
         return pacientesClinica;
     }
 
@@ -28,7 +27,7 @@ public class Clinica {
         historicalRecords.listAllRecords();
     }
 
-    // --- Gestión de Cola Activa ---
+    // ----- Gestión de Cola Activa -----
     public void registrarActualizarPacientesEncolados(int id, String nombre, String motivoC, int prioridad) {
         PacientesEncoladosClinica pacienteParaEncolar = new PacientesEncoladosClinica(id, nombre, motivoC, prioridad);
         activeQueue.insert(pacienteParaEncolar);
@@ -36,7 +35,6 @@ public class Clinica {
 
     public PacientesEncoladosClinica buscarPacienteEncolado(int id) {
         PacientesEncoladosClinica pacientesClinica = activeQueue.search(id);
-        // La impresión ya se hace dentro del método search del AVL, pero puedes añadirla aquí también si quieres.
         return pacientesClinica;
     }
 
