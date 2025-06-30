@@ -1,5 +1,18 @@
 package com.mycompany.sistemaclinica;
 
+// Definición del nodo para el árbol binario
+class Node<T> {
+    T data;
+    Node<T> left;
+    Node<T> right;
+
+    Node(T data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
 public class ArbolBinarioS {
     private Node<PacientesClinica> root;
 
